@@ -3,7 +3,7 @@
 """serializes instances to a JSON file and deserialize JSON file to instances"""
 
 import json
-from models.base import BaseModel
+from models.base_model import BaseModel
 
 
 class FileStorage:
@@ -13,7 +13,7 @@ class FileStorage:
         objects - dictionary used to store objects by ID
     """
 
-    __file_path = file.json
+    __file_path = "file.json"
     __objects = {}
 
     def __init__(self):
@@ -28,16 +28,23 @@ class FileStorage:
     def new(self, obj):
         """sets object into __objects with id key pairing.
         """
-        objects['self.__class__.id'] = self.id
+        FileStorage.__objects['{}.{}'.format(obj.__class__.__name__, obj.id)]\
+            = obj
 
     def save(self):
         """Serialize objects to JSON file
         """
-        with open(__file_path, "w") as file:
-                json.dump(__objects, file)
+        ndict = {}
+        for key, value in FileStorage.__objects.items():
+            ndict[key] = value.to_dict()
+        with open(FileStorage.__file_path, "a") as file:
+                json.dump(ndict, file)
 
     def reload(self):
         """Deserialize from JSON file
         """
-        with open(__file_path, "r") as file:
-            __objects = json.load(file)
+        try:
+            with open(FileStorage.__file_path, "r") as file:
+                FileStorage.__objects = json.load(file)
+        except:
+            return
