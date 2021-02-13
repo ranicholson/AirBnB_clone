@@ -2,7 +2,10 @@
 
 """Importing storage variable"""
 
-from engine.file_storage import FileStorage
+from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
+
+cdict = {'BaseModel': BaseModel}
 
 storage = FileStorage()
 storage.reload()

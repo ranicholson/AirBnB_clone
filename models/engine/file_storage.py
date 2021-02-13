@@ -2,6 +2,8 @@
 
 """serializes instances to a JSON file and deserialize JSON file to instances"""
 
+import models
+import os.path
 import json
 from models.base_model import BaseModel
 
@@ -37,14 +39,16 @@ class FileStorage:
         ndict = {}
         for key, value in FileStorage.__objects.items():
             ndict[key] = value.to_dict()
-        with open(FileStorage.__file_path, "a") as file:
+        with open(FileStorage.__file_path, "w") as file:
                 json.dump(ndict, file)
 
     def reload(self):
         """Deserialize from JSON file
         """
-        try:
+        if os.path.isfile(self.__file_path):
             with open(FileStorage.__file_path, "r") as file:
-                FileStorage.__objects = json.load(file)
-        except:
-            return
+                temp = json.load(file)
+                for key, value in temp.items():
+                    clrel = temp[key]["__class__"]
+                    gclass = models.cdict[clrel]
+                    self.__objects[key] = gclass(**value)
