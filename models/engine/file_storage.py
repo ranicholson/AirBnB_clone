@@ -36,15 +36,24 @@ class FileStorage:
         """
         ndict = {}
         for key, value in FileStorage.__objects.items():
-            ndict[key] = value.to_dict()
+            ndict = value.to_dict()
         with open(FileStorage.__file_path, "a") as file:
-                json.dump(ndict, file)
+                file.write(json.dumps(ndict))
+
+    def from_json_string(json_string):
+        """ converts json strings into a list to represent objects """
+        j_str = []
+        if json_string is None or len(json_string) == 0:
+            return j_str
+        else:
+            return json.loads(json_string)
 
     def reload(self):
         """Deserialize from JSON file
         """
         try:
             with open(FileStorage.__file_path, "r") as file:
-                FileStorage.__objects = json.load(file)
+                """ open and read the file where objs are stored """
+                FileStorage.from_json_string(f.read())
         except:
             return
