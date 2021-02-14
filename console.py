@@ -4,9 +4,11 @@
 
 import models
 from models import storage
-import cmd, sys
+import cmd
+import sys
 from models.base_model import BaseModel
 from models.engine.file_storage import FileStorage
+
 
 class HBNBCommand(cmd.Cmd):
     """ defines a single command interpreter to manage our objects """
@@ -84,11 +86,65 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """ Prints all str rep of all instances based or not on the cls nm """
+        store = []
 
-        if arg[0] not in self.classes_dict.keys():
-            print("** class doesn't exit **")
+        if len(arg) > 0:
+            if arg not in self.classes_dict.keys():
+                print("** class doesn't exit **")
+            elif arg in self.classes_dict.keys():
+                for key, value in storage.all().items():
+                    if value.__class__.__name__ == arg:
+                        store.append(str(value))
+                print(store)
+        else:
+            for key, value in storage.all().items():
+                store.append(str(value))
+            print(store)
 
+    def do_update(self, arg):
+        """ Updates an intance based on class name and id
+        by adding or updating attr """
+        tok = arg.split()
+        store = models.storage.all()
 
+        if len(tok) >= 2:
+            id = tok[0] + "." + tok[1]
+
+        if len(tok) == 0:
+            print("** class name missing **")
+
+        elif len(tok) == 1:
+            if tok[0] not in self.classes_dict.keys():
+                print("** class doesn't exist **")
+            else:
+                print("** instance id missing **")
+
+        elif len(tok) == 2:
+            print(id)
+            if tok[0] not in self.classes_dict.keys():
+                print("** class doesn't exit **")
+            elif self.id_check(id) is False:
+                return
+            else:
+                print("** attribute name missing **")
+
+        elif self.id_check(id) is False:
+            return
+        elif len(tok) == 3:
+            print("** value missing **")
+        else:
+            this_obj = store[id]
+            setattr(this_obj, tok[2], tok[3])
+            this_obj.save()
+
+    @staticmethod
+    def id_check(str):
+        """ ID check """
+        if str not in models.storage.all().keys():
+            print("** no instance found **")
+            return False
+        else:
+            return True
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
