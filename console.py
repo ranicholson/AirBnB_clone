@@ -89,6 +89,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
             else:
                 del store[id]
+                storage.save()
         if len(tok) == 1:
             if tok[0] not in self.classes_dict.keys():
                 print("** class doesn't exist **")
