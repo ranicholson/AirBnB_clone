@@ -63,7 +63,7 @@ class HBNBCommand(cmd.Cmd):
         if len(tok) == 2:
             id = tok[0] + "." + tok[1]
             if tok[0] not in self.classes_dict.keys():
-                print("** class doesn't exit **")
+                print("** class doesn't exist **")
             elif id not in store.keys():
                 print("** no instance found **")
             else:
@@ -84,7 +84,7 @@ class HBNBCommand(cmd.Cmd):
         if len(tok) == 2:
             id = tok[0] + "." + tok[1]
             if tok[0] not in self.classes_dict.keys():
-                print("** class doesn't exit **")
+                print("** class doesn't exist **")
             elif id not in store.keys():
                 print("** no instance found **")
             else:
@@ -103,7 +103,7 @@ class HBNBCommand(cmd.Cmd):
 
         if len(arg) > 0:
             if arg not in self.classes_dict.keys():
-                print("** class doesn't exit **")
+                print("** class doesn't exist **")
             elif arg in self.classes_dict.keys():
                 for key, value in storage.all().items():
                     if value.__class__.__name__ == arg:
