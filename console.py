@@ -108,11 +108,11 @@ class HBNBCommand(cmd.Cmd):
                 for key, value in storage.all().items():
                     if value.__class__.__name__ == arg:
                         store.append(str(value))
-                print(store)
+                print(str(store))
         else:
             for key, value in storage.all().items():
                 store.append(str(value))
-            print(store)
+            print(str(store))
 
     def do_update(self, arg):
         """ Updates an intance based on class name and id
@@ -133,7 +133,6 @@ class HBNBCommand(cmd.Cmd):
                 print("** instance id missing **")
 
         elif len(tok) == 2:
-            print(id)
             if tok[0] not in self.classes_dict.keys():
                 print("** class doesn't exit **")
             elif self.id_check(id) is False:
