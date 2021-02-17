@@ -74,7 +74,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** instance id missing **")
         if len(tok) == 0:
-            print("** class name is missing **")
+            print("** class name missing **")
 
     def do_destroy(self, arg):
         """ Deletes an instance based on the class name and id """
@@ -95,7 +95,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** instance id missing **")
         if len(tok) == 0:
-            print("** class name is missing **")
+            print("** class name missing **")
 
     def do_all(self, arg):
         """ Prints all str rep of all instances based or not on the cls nm """
