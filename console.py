@@ -147,7 +147,8 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
         else:
             this_obj = store[id]
-            setattr(this_obj, tok[2], tok[3])
+            value = tok[3].replace("\"", "")
+            setattr(this_obj, tok[2], value)
             this_obj.save()
 
     @staticmethod
