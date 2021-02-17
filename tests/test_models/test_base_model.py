@@ -32,23 +32,16 @@ class testBaseModel(unittest.TestCase):
         self.assertNotEqual(self.velour4.id, self.velour5.id)
         self.assertNotEqual(self.velour1.id, self.velour2.id)
 
-    def testId_match(self):
-        velour = BaseModel(2020)
-        self.assertNotEqual(velour.id, 2020)
-        velour = BaseModel(123)
-        self.assertNotEqual(velour.id, 123)
-        velour = BaseModel(1)
-        self.assertNotEqual(velour.id, 1)
-        velour = BaseModel()
-        self.assertNotEqual(velour.id, 0)
+    def test_custom(self):
+        """ test for custom attributes """
+        self.velour.hello = "world"
+        self.assertEqual(self.velour.hello, "world")
 
-    def test_created_at(self):
-        """ Datetime at creation of an object """
-        pass
-
-    def test_updated_at(self):
-        """ Datetime at update of an object """
-        pass
+#    def testId_match(self):
+#        velour = BaseModel()
+#        self.assertNotNone(velour.id)
+#        velour2 = BaseModel()
+#        self.assertNotNone(velour2.id)
 
     def test_str(self):
         """ Test that str prints details correctly """
