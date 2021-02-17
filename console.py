@@ -67,7 +67,7 @@ class HBNBCommand(cmd.Cmd):
             elif id not in store.keys():
                 print("** no instance found **")
             else:
-                print(store[id])
+                print(str(store[id]))
         if len(tok) == 1:
             if tok[0] not in self.classes_dict.keys():
                 print("** class doesn't exist **")
