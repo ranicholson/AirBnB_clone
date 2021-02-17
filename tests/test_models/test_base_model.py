@@ -32,6 +32,16 @@ class testBaseModel(unittest.TestCase):
         self.assertNotEqual(self.velour4.id, self.velour5.id)
         self.assertNotEqual(self.velour1.id, self.velour2.id)
 
+    def testId_match(self):
+        velour = BaseModel(2020)
+        self.assertEqual(velour.id, 2020)
+        velour2 = BaseModel(123)
+        self.assertEqual(velour.id, 123)
+        velour3 = BaseModel(1)
+        self.assertEqual(velour.id, 1)
+        velour4 = BaseModel()
+        self.assertEqual(velour.id, 0)
+
     def test_created_at(self):
         """ Datetime at creation of an object """
         pass
