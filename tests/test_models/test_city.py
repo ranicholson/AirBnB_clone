@@ -7,6 +7,7 @@ import json
 from models.base_model import BaseModel
 from models.city import City
 
+
 class testCity(unittest.TestCase):
     """ unittests for City """
 

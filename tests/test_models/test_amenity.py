@@ -7,6 +7,7 @@ import json
 from models.base_model import BaseModel
 import models.amenity import Amenity
 
+
 class testAmenity(unittest.TestCase):
     """ unittests for BaseModel """
 

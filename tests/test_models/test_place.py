@@ -7,6 +7,7 @@ import json
 from models.base_model import BaseModel
 from models.place import Place
 
+
 class testPlace(unittest.TestCase):
     """ unittests for Place """
 

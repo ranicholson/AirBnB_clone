@@ -7,6 +7,7 @@ import json
 from models.base_model import BaseModel
 from models.state import State
 
+
 class testState(unittest.TestCase):
     """ unittests for State """
 
