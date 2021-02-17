@@ -19,6 +19,10 @@ class testBaseModel(unittest.TestCase):
         self.velour4 = BaseModel(name="", number="None", id="None")
         self.velour5 = BaseModel()
 
+    def tearDown(self):
+        """ Tears down """
+        del self.velour
+
     def testId(self):
         """ Tests id for uniqueness """
         self.assertNotEqual(self.velour.id, self.velour1.id)
