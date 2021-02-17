@@ -5,7 +5,7 @@
 import unittest
 import json
 from models.base_model import BaseModel
-import models.amenity import Amenity
+from models.amenity import Amenity
 
 
 class testAmenity(unittest.TestCase):

@@ -19,10 +19,6 @@ class testBaseModel(unittest.TestCase):
         self.velour4 = BaseModel(name="", number="None", id="None")
         self.velour5 = BaseModel()
 
-    def tearDown(self):
-        """ Test for tear down """
-        del self.basemodel
-
     def testId(self):
         """ Tests id for uniqueness """
         self.assertNotEqual(self.velour.id, self.velour1.id)
@@ -31,15 +27,6 @@ class testBaseModel(unittest.TestCase):
         self.assertNotEqual(self.velour3.id, self.velour4.id)
         self.assertNotEqual(self.velour4.id, self.velour5.id)
         self.assertNotEqual(self.velour1.id, self.velour2.id)
-
-        velour = BaseModel(2020)
-        self.assertEqual(velour.id, 2020)
-        velour = BaseModel(123)
-        self.assertEqual(velour.id, 123)
-        velour = BaseModel(1)
-        self.assertEqual(velour.id, 1)
-        velour = BaseModel()
-        self.assertEqual(velour.id, 0)
 
     def test_created_at(self):
         """ Datetime at creation of an object """
