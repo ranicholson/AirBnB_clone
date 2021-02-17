@@ -63,18 +63,18 @@ class HBNBCommand(cmd.Cmd):
         if len(tok) == 2:
             id = tok[0] + "." + tok[1]
             if tok[0] not in self.classes_dict.keys():
-                print("** class doesn't exit **")
+                print("** class doesn't exist **")
             elif id not in store.keys():
                 print("** no instance found **")
             else:
-                print(store[id])
+                print(str(store[id]))
         if len(tok) == 1:
             if tok[0] not in self.classes_dict.keys():
                 print("** class doesn't exist **")
             else:
                 print("** instance id missing **")
         if len(tok) == 0:
-            print("** class name is missing **")
+            print("** class name missing **")
 
     def do_destroy(self, arg):
         """ Deletes an instance based on the class name and id """
@@ -84,18 +84,19 @@ class HBNBCommand(cmd.Cmd):
         if len(tok) == 2:
             id = tok[0] + "." + tok[1]
             if tok[0] not in self.classes_dict.keys():
-                print("** class doesn't exit **")
+                print("** class doesn't exist **")
             elif id not in store.keys():
                 print("** no instance found **")
             else:
                 del store[id]
+                storage.save()
         if len(tok) == 1:
             if tok[0] not in self.classes_dict.keys():
                 print("** class doesn't exist **")
             else:
                 print("** instance id missing **")
         if len(tok) == 0:
-            print("** class name is missing **")
+            print("** class name missing **")
 
     def do_all(self, arg):
         """ Prints all str rep of all instances based or not on the cls nm """
@@ -103,16 +104,16 @@ class HBNBCommand(cmd.Cmd):
 
         if len(arg) > 0:
             if arg not in self.classes_dict.keys():
-                print("** class doesn't exit **")
+                print("** class doesn't exist **")
             elif arg in self.classes_dict.keys():
                 for key, value in storage.all().items():
                     if value.__class__.__name__ == arg:
                         store.append(str(value))
-                print(store)
+                print(str(store))
         else:
             for key, value in storage.all().items():
                 store.append(str(value))
-            print(store)
+            print(str(store))
 
     def do_update(self, arg):
         """ Updates an intance based on class name and id
@@ -133,7 +134,6 @@ class HBNBCommand(cmd.Cmd):
                 print("** instance id missing **")
 
         elif len(tok) == 2:
-            print(id)
             if tok[0] not in self.classes_dict.keys():
                 print("** class doesn't exit **")
             elif self.id_check(id) is False:
@@ -147,7 +147,8 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
         else:
             this_obj = store[id]
-            setattr(this_obj, tok[2], tok[3])
+            value = tok[3].replace("\"", "")
+            setattr(this_obj, tok[2], value)
             this_obj.save()
 
     @staticmethod
