@@ -151,6 +151,32 @@ class HBNBCommand(cmd.Cmd):
             setattr(this_obj, tok[2], value)
             this_obj.save()
 
+    def default(self, line):
+        """Override default error for specific commands"""
+
+        com_list = line.split(".")
+        classname = com_list[0]
+        if len(com_list) > 1 and classname in self.classes_dict.keys():
+            tmp = com_list[1].split("(")
+            command = tmp[0]
+            if command == "all":
+                self.do_all(classname)
+            elif command == "count":
+                self.count(classname)
+            else:
+                print("*** Unknown syntax: {}".format(line))
+        else:
+            print("*** Unknown syntax: {}".format(line))
+
+    @staticmethod
+    def count(classname):
+        """Method to count number of objects of specified class"""
+        class_count = 0
+        for key, value in storage.all().items():
+            if value.__class__.__name__ == classname:
+                class_count += 1
+        print(class_count)
+
     @staticmethod
     def id_check(str):
         """ ID check """
