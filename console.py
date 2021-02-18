@@ -171,6 +171,10 @@ class HBNBCommand(cmd.Cmd):
                     self.do_show(arg)
                 else:
                     self.do_destroy(arg)
+            elif command == "update":
+                tmp = com_list[1].split("(")
+                arg = self.update_helper(classname, tmp[1])
+                self.do_update(arg)
             else:
                 print("*** Unknown syntax: {}".format(line))
         else:
@@ -193,6 +197,20 @@ class HBNBCommand(cmd.Cmd):
             return False
         else:
             return True
+
+    @staticmethod
+    def update_helper(classname, string):
+        """ Method to break up values passed when overriding default"""
+        upd_list = string.split(",")
+        idl = upd_list[0]
+        idn = idl.replace("\"", "")
+        arg = classname + " " + idn
+        if len(upd_list) > 2:
+            attr = upd_list[1].replace("\"", "").replace(" ", "")
+            tmpvalue = upd_list[2].split(")")
+            value = tmpvalue[0].replace("\"", "")
+            arg += " " + attr + " " + value
+            return (arg)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
