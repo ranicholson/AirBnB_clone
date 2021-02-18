@@ -19,24 +19,10 @@ class testUser(unittest.TestCase):
         """ Test for user tear down """
         del self.user
 
-    def testId(self):
-        """ Tests id """
-
-    def test_created_at(self):
-        """ Datetime at creation of an object """
-
-    def test_updated_at(self):
-        """ Datetime at update of an object """
-
-    def test_str(self):
-        """ Test that str prints details correctly """
-
-    def test_to_dict(self):
-        """ Test that keys/values are saving correctly """
-
-    def test_save(self):
-        """ Tests that instance attributes are saved and updated
-        correctly with the proper updated datetime """
+    def test_attribute(self):
+        """ Test for saved attributes """
+        u1 = User()
+        self.assertEqual(u1.email, "")
 
 
 if __name__ == "__main__":
