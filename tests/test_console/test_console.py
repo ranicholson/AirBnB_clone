@@ -4,11 +4,12 @@
 
 import unittest
 import json
-from models.base_model import BaseModel
-from models.engine.file_storage import FileStorage
+from .models.base_model import BaseModel
+from .models.engine.file_storage import FileStorage
 
 
 class testconsole(unittest.TestCase):
+
     """ unittests for console """
 
     def test_created_console(self):

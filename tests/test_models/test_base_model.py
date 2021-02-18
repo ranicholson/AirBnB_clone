@@ -8,6 +8,7 @@ from models.base_model import BaseModel
 
 
 class testBaseModel(unittest.TestCase):
+
     """ unittests for BaseModel """
 
     def setUp(self):
@@ -46,7 +47,8 @@ class testBaseModel(unittest.TestCase):
         self.velour = BaseModel(1)
         self.assertNotEqual(self.velour.id, 1)
 
-    def testId_match(self):
+    def test_Id_match(self):
+        """ test for matching id """
         self.velour.name = "Sasha"
         self.velour.champion = 2017
 
