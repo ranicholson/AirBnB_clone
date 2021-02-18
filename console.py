@@ -169,14 +169,12 @@ class HBNBCommand(cmd.Cmd):
                     return
             idl = tmp[1].split(",")
             idn = idl[0].replace("\"", "")
-            print(idn)
             glarg = classname + " " + idn
-            print(glarg)
             if command == "show" or command == "destroy":
                 if command == "show":
-                    self.do_show(arg)
+                    self.do_show(glarg)
                 else:
-                    self.do_destroy(arg)
+                    self.do_destroy(glarg)
             elif command == "update":
                 tmp = com_list[1].split("(")
                 updates = self.update_helper(classname, tmp[1])
