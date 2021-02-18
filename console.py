@@ -160,22 +160,25 @@ class HBNBCommand(cmd.Cmd):
         if len(com_list) > 1 and classname in self.classes_dict.keys():
             tmp = com_list[1].split("(")
             command = tmp[0]
-            if command == "all" or command == "show":
+            if command == "all" or command == "count":
                 if command == "all":
                     self.do_all(classname)
                     return
                 else:
                     self.count(classname)
                     return
-            idl = tmp[1].split(",")
-            idn = idl[0].replace("\"", "")
-            glarg = classname + " " + idn
             if command == "show" or command == "destroy":
+                idl = tmp[1].split(")")
+                idn = idl[0].replace("\"", "")
+                glarg = classname + " " + idn
                 if command == "show":
                     self.do_show(glarg)
                 else:
                     self.do_destroy(glarg)
             elif command == "update":
+                idl = tmp[1].split(",")
+                idn = idl[0].replace("\"", "")
+                glarg = classname + " " + idn
                 tmp = com_list[1].split("(")
                 updates = self.update_helper(classname, tmp[1])
                 if type(updates) is str:
@@ -233,7 +236,7 @@ class HBNBCommand(cmd.Cmd):
                 tmpvalue = upd_list[2].split(")")
                 value = tmpvalue[0].replace("\"", "")
             blarg += " " + attr + " " + value
-            return (arg)
+            return (blarg)
         else:
             strlist = string.split(",", 1)
             dstr = strlist[1].replace(")", "").replace(" ", "", 1)
