@@ -17,7 +17,7 @@ class testFileStorage(unittest.TestCase):
     def test_updated_at_storage(self):
         """ Datetime at update of an object when stored """
 
-    def test_to_dict(self):
+    def test_from_dict(self):
         """ Test that keys/values are saving correctly """
 
     def test_save(self):
