@@ -37,11 +37,22 @@ class testBaseModel(unittest.TestCase):
         self.velour.hello = "world"
         self.assertEqual(self.velour.hello, "world")
 
-#    def testId_match(self):
-#        velour = BaseModel()
-#        self.assertNotNone(velour.id)
-#        velour2 = BaseModel()
-#        self.assertNotNone(velour2.id)
+    def test_noupdateId(self):
+        """ test """
+        self.velour = BaseModel(2020)
+        self.assertNotEqual(self.velour.id, 2020)
+        self.velour = BaseModel(123)
+        self.assertNotEqual(self.velour.id, 123)
+        self.velour = BaseModel(1)
+        self.assertNotEqual(self.velour.id, 1)
+
+    def testId_match(self):
+        self.velour.name = "Sasha"
+        self.velour.champion = 2017
+
+        self.assertIsNotNone(self.velour.id)
+        self.assertEqual(self.velour.name, "Sasha")
+        self.assertEqual(self.velour.champion, 2017)
 
     def test_str(self):
         """ Test that str prints details correctly """
