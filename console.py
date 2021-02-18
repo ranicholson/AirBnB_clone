@@ -2,6 +2,7 @@
 
 """ this is a single command interpreter for managing our objects """
 
+import ast
 import models
 from models import storage
 import cmd
@@ -159,22 +160,34 @@ class HBNBCommand(cmd.Cmd):
         if len(com_list) > 1 and classname in self.classes_dict.keys():
             tmp = com_list[1].split("(")
             command = tmp[0]
-            if command == "all":
-                self.do_all(classname)
-            elif command == "count":
-                self.count(classname)
-            elif command == "show" or command == "destroy":
-                idl = tmp[1].split(")")
-                idn = idl[0].replace("\"", "")
-                arg = classname + " " + idn
+            if command == "all" or command == "show":
+                if command == "all":
+                    self.do_all(classname)
+                    return
+                else:
+                    self.count(classname)
+                    return
+            idl = tmp[1].split(",")
+            idn = idl[0].replace("\"", "")
+            print(idn)
+            glarg = classname + " " + idn
+            print(glarg)
+            if command == "show" or command == "destroy":
                 if command == "show":
                     self.do_show(arg)
                 else:
                     self.do_destroy(arg)
             elif command == "update":
                 tmp = com_list[1].split("(")
-                arg = self.update_helper(classname, tmp[1])
-                self.do_update(arg)
+                updates = self.update_helper(classname, tmp[1])
+                if type(updates) is str:
+                    self.do_update(updates)
+                else:
+                    cid = glarg
+                    for key, value in updates.items():
+                        uarg = cid + " " + key + " " + str(value)
+                        self.do_update(uarg)
+                        uarg = ""
             else:
                 print("*** Unknown syntax: {}".format(line))
         else:
@@ -201,16 +214,33 @@ class HBNBCommand(cmd.Cmd):
     @staticmethod
     def update_helper(classname, string):
         """ Method to break up values passed when overriding default"""
+        flag = 0
+        for element in string:
+            if element == "{":
+                flag = 1
+                break
         upd_list = string.split(",")
         idl = upd_list[0]
         idn = idl.replace("\"", "")
-        arg = classname + " " + idn
-        if len(upd_list) > 2:
-            attr = upd_list[1].replace("\"", "").replace(" ", "")
-            tmpvalue = upd_list[2].split(")")
-            value = tmpvalue[0].replace("\"", "")
-            arg += " " + attr + " " + value
+        blarg = classname + " " + idn
+        if flag == 0:
+            if len(upd_list) < 2:
+                attr = ""
+            else:
+                attr = upd_list[1].replace("\"", "").replace(" ", "")
+            if len(upd_list) < 3:
+                tmpvalue = []
+                value = ""
+            else:
+                tmpvalue = upd_list[2].split(")")
+                value = tmpvalue[0].replace("\"", "")
+            blarg += " " + attr + " " + value
             return (arg)
+        else:
+            strlist = string.split(",", 1)
+            dstr = strlist[1].replace(")", "").replace(" ", "", 1)
+            updatedict = ast.literal_eval(dstr)
+            return (updatedict)
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
