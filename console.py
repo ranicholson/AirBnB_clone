@@ -163,6 +163,14 @@ class HBNBCommand(cmd.Cmd):
                 self.do_all(classname)
             elif command == "count":
                 self.count(classname)
+            elif command == "show" or command == "destroy":
+                idl = tmp[1].split(")")
+                idn = idl[0].replace("\"", "")
+                arg = classname + " " + idn
+                if command == "show":
+                    self.do_show(arg)
+                else:
+                    self.do_destroy(arg)
             else:
                 print("*** Unknown syntax: {}".format(line))
         else:
