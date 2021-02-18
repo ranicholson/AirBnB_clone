@@ -21,8 +21,8 @@ class testAmenity(unittest.TestCase):
 
     def test_assignment(self):
         """ assign a value to the class attributes """
-        self.amenity.fireplace = True
-        self.assertTrue(True, self.amenity.fireplace)
+        a1 = Amenity()
+        self.assertEqual(a1.name, "")
 
 
 if __name__ == "__main__":
