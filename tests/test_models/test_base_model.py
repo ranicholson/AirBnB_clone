@@ -71,9 +71,9 @@ class testBaseModel(unittest.TestCase):
         """ Test that str prints details correctly """
         pass
 
-#    def test_to_dict(self):
-#        """ Test that dict is saving all keys/values """
-#        self.assertTrue('id' in dir(self.velour))
+    def test_to_dict(self):
+        """ Test that dict is saving all keys/values """
+        self.assertTrue('id' in dir(self.velour))
 #        self.assertTrue('created_at' in dir(self.velour))
 #        self.assertTrue('updated_at' in dir(self.velour))
 #        self.assertTrue('to_dict' in dir(self.velour))
