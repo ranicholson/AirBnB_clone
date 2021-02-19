@@ -141,6 +141,8 @@ class HBNBCommand(cmd.Cmd):
                 return
             else:
                 print("** attribute name missing **")
+        elif tok[0] not in self.classes_dict.keys():
+            print("** class doesn't exist **")
 
         elif self.id_check(id) is False:
             return
