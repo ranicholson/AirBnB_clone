@@ -68,12 +68,16 @@ class testBaseModel(unittest.TestCase):
         self.assertEqual(self.velour.name, "Sasha")
         self.assertEqual(self.velour.champion, 2017)
 
-    def test_str(self):
+    def test_str_attributes(self):
         """ Test that str prints details correctly """
         testv = str(self.velour).split(" ", 2)
         classv = "[{}]".format(self.velour.__class__.__name__)
         idv = "({})".format(self.velour.id)
         dictv = "{}".format(self.velour.__dict__)
+
+    def test_str(self):
+        """ Test for str output """
+        prnt = "[__class__.__name__] (self.velour.id) self.__dict__"
 
     def test_todict(self):
         """ tests for dictionary """
