@@ -5,6 +5,7 @@
 import unittest
 import json
 from models.base_model import BaseModel
+import datetime
 
 
 class testBaseModel(unittest.TestCase):
@@ -67,17 +68,28 @@ class testBaseModel(unittest.TestCase):
         self.assertEqual(self.velour.name, "Sasha")
         self.assertEqual(self.velour.champion, 2017)
 
-    def test_str(self):
+    def test_str_attributes(self):
         """ Test that str prints details correctly """
+        testv = str(self.velour).split(" ", 2)
+        classv = "[{}]".format(self.velour.__class__.__name__)
+        idv = "({})".format(self.velour.id)
+        dictv = "{}".format(self.velour.__dict__)
+
+    def test_str(self):
+        """ Test for str output """
+        prnt = "[__class__.__name__] (self.velour.id) self.__dict__"
+
+    def test_todict(self):
+        """ tests for dictionary """
         pass
 
-#    def test_to_dict(self):
-#        """ Test that dict is saving all keys/values """
-#        self.assertTrue('id' in dir(self.velour))
-#        self.assertTrue('created_at' in dir(self.velour))
-#        self.assertTrue('updated_at' in dir(self.velour))
-#        self.assertTrue('to_dict' in dir(self.velour))
-#        self.assertTrue('save' in dir(self.velour))
+    def test_to_dict(self):
+        """ Test that dict is saving all keys/values """
+        self.assertTrue('id' in dir(self.velour))
+        self.assertTrue('created_at' in dir(self.velour))
+        self.assertTrue('updated_at' in dir(self.velour))
+        self.assertTrue('to_dict' in dir(self.velour))
+        self.assertTrue('save' in dir(self.velour))
 
 #        velour1_list = dir(self.velour1)
 #        test = 'to_dict' in velour1_list
