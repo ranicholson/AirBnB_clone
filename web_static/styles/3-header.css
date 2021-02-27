@@ -3,5 +3,6 @@ header {
     height: 70px;
     width: 100%;
     border-bottom: 1px #CCCCCC;
-    background-image: url('../images/logo.png') 20px left center no-repeat;
+    background: url('../images/logo.png')left center no-repeat;
+    background-size: 20px;
 }
