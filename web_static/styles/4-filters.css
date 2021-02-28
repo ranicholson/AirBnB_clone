@@ -14,8 +14,7 @@
     width: 20%;
     border: none;
     border-radius: 4px;
-    margin-right: 30px;
-    position: absolute;
+    margin: 10px 30px;
 }
 
 button:hover {
