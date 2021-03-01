@@ -26,21 +26,23 @@ button:hover {
 .amenities {
     height: 100%;
     width: 25%;
-    display: inline;
-    margin-left: 30px
+    display: inline-block;
 }
 
 .locations {
     border-right: #DDDDDD 1px solid;
-    float: left;
 }
 
 .filters h3 {
+    margin: 0;
+    margin-top: 10px;
+    margin-left: 30px;
     font-weight: 600;
 }
 
 .filters h4 {
     font-weight: 400;
     font-size: 14px
-    margin-top: 0;
+    margin-top: 10;
+    margin-left: 30px;
 }
