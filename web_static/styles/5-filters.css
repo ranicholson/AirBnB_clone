@@ -31,11 +31,11 @@ button:hover {
 .locations {
     border-right: #DDDDDD 1px solid;
     float: left;
-    padding: 20px
+    margin-left: 20px;
 }
 
 amenities {
-    float: center;
+    float: right;
 }
 
 .filters h3 {
