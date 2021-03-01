@@ -22,7 +22,7 @@ button:hover {
     opacity: 0.9;
 }
 
-.locations
+.locations,
 .amenities {
     height: 100%;
     width: 25%;
@@ -30,6 +30,12 @@ button:hover {
 
 .locations {
     border-right: #DDDDDD 1px solid;
+    float: left;
+    padding: 20px
+}
+
+amenities {
+    float: center;
 }
 
 .filters h3 {
