@@ -27,16 +27,12 @@ button:hover {
     height: 100%;
     width: 25%;
     display: inline;
+    margin-left: 30px
 }
 
 .locations {
     border-right: #DDDDDD 1px solid;
     float: left;
-    margin-left: 20px;
-}
-
-amenities {
-    float: right;
 }
 
 .filters h3 {
@@ -46,4 +42,5 @@ amenities {
 .filters h4 {
     font-weight: 400;
     font-size: 14px
+    margin-top: 0;
 }
